@@ -8,6 +8,12 @@ class Level:
         
         # get the surface
         self.dispay_surface = pygame.display.get_surface()
+
+        # สร้างพื้น
+        self.floor_surf = pygame.image.load('./Rougelite_Basic/Map/level_1.png')
+        self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
+        floor_offset_pos = self.floor_rect.topleft
+        self.dispay_surface.blit(self.floor_surf, floor_offset_pos)
         
         # sprite group
         self.visible_sprites = pygame.sprite.Group()
