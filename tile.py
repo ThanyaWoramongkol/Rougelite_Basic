@@ -9,4 +9,4 @@ class Tile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
 
         # # recommend hitbox by ผม => self.hitbox = self.rect.inflate(0, -10) and (in this line below)
-        # self.hitbox = self.rect.inflate(0, -5)
+        self.hitbox = self.rect.inflate(0, -5)

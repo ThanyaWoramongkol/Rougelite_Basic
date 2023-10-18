@@ -13,7 +13,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.level = Level()
-
+    
         self.main_menu = Menu()
 
 
