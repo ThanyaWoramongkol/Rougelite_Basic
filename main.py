@@ -13,7 +13,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.level = Level()
-    
+
         self.main_menu = Menu()
 
 
@@ -37,7 +37,7 @@ class Game:
             else:
                 self.screen.fill('white')
                 # Run the game level
-                self.level.run()  
+                self.level.run()
 
                 pygame.display.update()
                 self.clock.tick(FPS)

@@ -5,6 +5,7 @@ from player import Player
 from debug import debug
 from support import *
 from ui import UI
+from enemie import Enemy
 
 class Level:
     def __init__(self):
@@ -31,7 +32,8 @@ class Level:
 
     def create_map(self):
         layout = {
-            'boundary': import_csv_layout('./Map/map_1_floorblock.csv')
+            'boundary': import_csv_layout('./Map/map_1_floorblock.csv'),
+            'entities' : import_csv_layout('./Map/map_Entities.csv') #add by TaiKie
         }
 
         # generate map
@@ -43,8 +45,19 @@ class Level:
                         y = row_index * TILESIZE
                         if style == 'boundary':
                             Tile((x, y), [self.visible_sprites, self.obstacles_sprites], 'invisible')
-        # player position
-        self.player = Player((631, 360), [self.visible_sprites], self.obstacles_sprites)
+
+                        #enemies parts
+                        if style == 'entities':
+                            if col == '394':
+                                #add by TaiKie
+                                self.player = Player((x, y), [self.visible_sprites], self.obstacles_sprites)
+                            else:
+                                if col == '390' : monster_name = 'slime'
+                                elif col == '391' : monster_name = 'flying creature'
+                                elif col == '392' : monster_name = 'goblin'
+                                Enemy(monster_name, (x, y), [self.visible_sprites], self.obstacles_sprites)
+
+
 
         # Debugging
         print("Map created successfully")
@@ -59,26 +72,32 @@ class Level:
         # Draw other game objects on top of the map
         self.visible_sprites.draw(self.display_surface)
         self.visible_sprites.update()
+        self.visible_sprites.enemy_update(self.player)
         self.ui.display(self.player)
 
         pygame.display.update()
 
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self):
-        
+
         # gennaral setup
         super().__init__()
         self.display_surface = pygame.display.get_surface()
         self.half_width = self.display_surface.get_size()[0] // 2
-        self.half_height = self.display_surface.get_size()[1] // 2        
+        self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
-        
+
     def custom_draw(self,player):
-        
+
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centerx - self.half_height
-        
+
         # for sprite in self.sprites():
         for sprite in sorted(self.sprites(),key = lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image,offset_pos)
+
+    def enemy_update(self, player): #add by TaiKie
+        enemy_sprites = [sprite for sprite in self.sprites() if hasattr(sprite, 'sprite_type') and sprite.sprite_type == 'enemy']
+        for enemy in enemy_sprites:
+            enemy.enemy_update(player)
