@@ -13,23 +13,48 @@ class Menu:
         self.quit_text = self.font.render("Quit", True, MENU_BUTTON_COLOR)
 
     def render_main_menu(self, screen):
-        
-        # setup
-        screen.fill(MENU_BG_COLOR)
+        # Load the background image
+        background_image = pygame.image.load("./Asset/MenuBG.png")
+        background_image = pygame.transform.scale(background_image, (WIDTH, HEIGTH))
 
-        # pos of mainmenu
-        screen.blit(self.main_menu_title, (MENU_WIDTH_CENTER - self.main_menu_title.get_width() // 2, 100))
+        # Draw the background image
+        screen.blit(background_image, (0, 0))
 
-        # drawing button
+        # Position of main menu title
+        title_x = MENU_WIDTH_CENTER - self.main_menu_title.get_width() // 2
+        screen.blit(self.main_menu_title, (title_x, 100))
+
+        # Drawing buttons
         pygame.draw.rect(screen, MENU_BUTTON_BG, self.start_button)
         pygame.draw.rect(screen, MENU_BUTTON_BG, self.quit_button)
 
-        # render text
-        text_rect = self.start_text.get_rect(center=self.start_button.center)
-        screen.blit(self.start_text, text_rect)
+        # Render text on buttons
+        start_text_rect = self.start_text.get_rect(center=self.start_button.center)
+        screen.blit(self.start_text, start_text_rect)
 
-        text_rect = self.quit_text.get_rect(center=self.quit_button.center)
-        screen.blit(self.quit_text, text_rect)
+        quit_text_rect = self.quit_text.get_rect(center=self.quit_button.center)
+        screen.blit(self.quit_text, quit_text_rect)
 
         pygame.display.update()
+
+    # def render_main_menu(self, screen):
+        
+    #     # setup
+    #     screen.fill(MENU_BG_COLOR)
+
+    #     # pos of mainmenu
+    #     screen.blit(self.main_menu_title, (MENU_WIDTH_CENTER - self.main_menu_title.get_width() // 2, 100))
+
+    #     # drawing button
+    #     pygame.draw.rect(screen, MENU_BUTTON_BG, self.start_button)
+    #     pygame.draw.rect(screen, MENU_BUTTON_BG, self.quit_button)
+
+    #     # render text
+    #     text_rect = self.start_text.get_rect(center=self.start_button.center)
+    #     screen.blit(self.start_text, text_rect)
+
+    #     text_rect = self.quit_text.get_rect(center=self.quit_button.center)
+    #     screen.blit(self.quit_text, text_rect)
+
+    #     pygame.display.update()
 
