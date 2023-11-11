@@ -70,7 +70,8 @@ class Level:
                                       (x, y), 
                                       [self.visible_sprites,self.attackable_sprites],
                                       self.obstacles_sprites,
-                                      self.damage_player)
+                                      self.damage_player,
+                                      self.add_exp)
 
 
 
@@ -99,6 +100,17 @@ class Level:
             self.player.health -= amount
             self.player.vulnerable = False
             self.player.hurt_time = pygame.time.get_ticks()
+
+
+        # if self.player.health <= 0:
+        #     self.display_surface.fill((255, 0, 0))  # Red background for the game-over screen
+        #     # Render a message or other elements for the game-over screen
+        #     game_over_text = UI_FONT.render("Game Over", True, (255, 255, 255))
+        #     screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGTH // 2))
+        #     pygame.display.update()
+
+    def add_exp(self, amount):
+        self.player.exp += amount
 
     def run(self):
         self.display_surface.fill((255, 255, 255))  # Fill the screen with a white background

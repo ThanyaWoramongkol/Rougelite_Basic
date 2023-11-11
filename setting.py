@@ -6,10 +6,16 @@ TILESIZE    = 16
 
 # user interface
 BAR_HEIGHT = 20
-HEALTH_BAR_WIDTH = 200
+HEALTH_BAR_WIDTH = 240
 ENERGY_BAR_WIDTH = 140
 UI_FONT = './Asset/Font/ChakraPetch-Medium.ttf'
+UI_OUTLINE = './Asset/Font/ChakraPetch-Bold.ttf'
 UI_FONT_SIZE = 18
+UI_TIMER_SIZE = 27
+
+GAME_STATE_IN_PROGRESS = 0
+GAME_STATE_GAME_OVER = 1
+
 
 # general colors
 WATER_COLOR = '#71ddee'
@@ -24,15 +30,16 @@ UI_BORDER_COLOR_ACTIVE = 'gold'
 
 # mainmenu interface
 MENU_WIDTH_CENTER = WIDTH // 2
+MENU_HEIGTH_CENTER = HEIGTH // 2
 MENU_BG_COLOR = 'green'
 MENU_BUTTON_BG = '#363636'
 MENU_BUTTON_COLOR = 'white'
 
 # enemy
 MONSTER_DATA = {
-    "flying creature" : {'health' : 100, 'exp' : 150, 'damage' : 20, 'attack_type' : 'tackle', 'speed' : 1, 'resistance' : 3, 'attack_radius' : 10, 'notice_radius' : 300},
-    "goblin" : {'health' : 150, 'exp' : 200, 'damage' : 25, 'attack_type' : 'slash', 'speed' : 1, 'resistance' : 2, 'attack_radius' : 20, 'notice_radius' : 200},
-    "slime" : {'health' : 30, 'exp' : 50, 'damage' : 10, 'attack_type' : 'tackle', 'speed' : 1, 'resistance' : 1, 'attack_radius' : 10, 'notice_radius' : 100}
+    "flying creature" : {'health' : 100, 'exp' : 10, 'damage' : 20, 'attack_type' : 'tackle', 'speed' : 1, 'resistance' : 3, 'attack_radius' : 10, 'notice_radius' : 300},
+    "goblin" : {'health' : 150, 'exp' : 15, 'damage' : 25, 'attack_type' : 'slash', 'speed' : 1, 'resistance' : 2, 'attack_radius' : 20, 'notice_radius' : 200},
+    "slime" : {'health' : 30, 'exp' : 5, 'damage' : 10, 'attack_type' : 'tackle', 'speed' : 1, 'resistance' : 1, 'attack_radius' : 10, 'notice_radius' : 100}
 }
 
 # weapons

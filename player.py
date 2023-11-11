@@ -37,8 +37,7 @@ class Player(Entity):
         # stats (UI)
         self.stats = {'health': 500, 'energy': 60, 'attack': 10, 'speed': 2}
         self.health = self.stats['health']
-        self.energy = self.stats['energy']
-        self.exp = 123
+        self.exp = 0
         self.speed = self.stats['speed']
         
         # damage timer
