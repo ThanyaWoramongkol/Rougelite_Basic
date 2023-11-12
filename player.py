@@ -9,7 +9,7 @@ class Player(Entity):
         self.image = pygame.image.load('./Asset/dungeon/heroes/0.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0,-26)
-        
+
 
         # graphics setup
         self.import_player_assets()
@@ -35,11 +35,11 @@ class Player(Entity):
         self.switch_duration_cooldown = 200
 
         # stats (UI)
-        self.stats = {'health': 500, 'energy': 60, 'attack': 10, 'speed': 2}
+        self.stats = {'health': 500, 'energy': 60, 'attack': 10, 'speed': 3}
         self.health = self.stats['health']
         self.exp = 0
         self.speed = self.stats['speed']
-        
+
         # damage timer
         self.vulnerable = True
         self.hurt_time = None
@@ -50,7 +50,7 @@ class Player(Entity):
         self.animations = {'up': [],'down': [],'left': [],'right': [],
 			'right_idle':[],'left_idle':[],'up_idle':[],'down_idle':[],
 			'right_attack':[],'left_attack':[],'up_attack':[],'down_attack':[]}
-        
+
         for animation in self.animations.keys():
             full_path = character_path + animation
             self.animations[animation] = import_folder(full_path)
@@ -78,21 +78,21 @@ class Player(Entity):
             self.status = 'left'
         else:
             self.direction.x = 0
-        
+
         #get player attack
         if key[pygame.K_SPACE] and not self.attacking:
             self.attacking = True
             self.attack_time = pygame.time.get_ticks()
             self.create_attack()
-        
+
         if key[pygame.K_LCTRL] and not self.attacking:
             self.attacking = True
             self.attack_time = pygame.time.get_ticks()
-        
+
         if key[pygame.K_q] and self.can_switch_weapon:
             self.can_switch_weapon = False
             self.weapon_switch_time = pygame.time.get_ticks()
-            
+
             if self.weapon_index < len(list(weapon_data.keys())) - 1:
                 self.weapon_index += 1
             else:
@@ -100,12 +100,12 @@ class Player(Entity):
             self.weapon = list(weapon_data.keys())[self.weapon_index]
 
     def get_status(self):
-        
+
         # idel status
         if self.direction.x == 0 and self.direction.y == 0:
             if not 'idle' in self.status and not 'attack' in self.status:
                 self.status = self.status + '_idle'
-        
+
         if self.attacking:
             self.direction.x = 0
             self.direction.y = 0
@@ -125,11 +125,11 @@ class Player(Entity):
         self.frame_index += self.animation_speed
         if self.frame_index >= len(animation):
             self.frame_index = 0
-        
+
         # set the image
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center = self.hitbox.center)
-        
+
         # flicker
         if not self.vulnerable:
             alpha = self.wave_value()
@@ -149,15 +149,15 @@ class Player(Entity):
             if current_time - self.attack_time >= self.attack_cooldown + weapon_data[self.weapon]['cooldown']:
                 self.attacking = False
                 self.destroy_attack()
-        
+
         if not self.can_switch_weapon:
             if current_time - self.weapon_switch_time >= self.switch_duration_cooldown:
                 self.can_switch_weapon = True
-        
+
         if not self.vulnerable:
             if current_time - self.hurt_time >= self.invulnerability_duration:
                 self.vulnerable= True
-        
+
     def update(self):
         self.input()
         self.cooldowns()

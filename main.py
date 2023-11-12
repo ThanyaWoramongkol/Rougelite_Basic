@@ -46,6 +46,10 @@ class Game:
                     self.screen.fill('white')
                     self.level.run()
 
+                    # Print the number of enemies
+                    enemy_count = self.level.get_enemy_count()
+                    print(f"Number of Enemies: {enemy_count}")
+
                     # Update and display the timer
                     elapsed_time = pygame.time.get_ticks() - self.start_time
                     self.display_timer(elapsed_time)

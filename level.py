@@ -24,7 +24,7 @@ class Level:
         # sprite group
         self.visible_sprites = YSortCameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
-        
+
         # attack sprites
         self.current_attack = None
         self.attack_sprites = pygame.sprite.Group()
@@ -67,7 +67,7 @@ class Level:
                                 elif col == '391' : monster_name = 'flying creature'
                                 elif col == '392' : monster_name = 'goblin'
                                 Enemy(monster_name,
-                                      (x, y), 
+                                      (x, y),
                                       [self.visible_sprites,self.attackable_sprites],
                                       self.obstacles_sprites,
                                       self.damage_player,
@@ -78,6 +78,11 @@ class Level:
         # Debugging
         print("Map created successfully")
         print(f"Number of visible sprites: {len(self.visible_sprites)}")
+
+    def get_enemy_count(self):
+        # Count the number of instances of the Enemy class in visible_sprites
+        enemy_count = sum(1 for sprite in self.visible_sprites.sprites() if isinstance(sprite, Enemy))
+        return enemy_count
 
     def create_attack(self):
         self.current_attack = Weapon(self.player,[self.visible_sprites, self.attack_sprites])
