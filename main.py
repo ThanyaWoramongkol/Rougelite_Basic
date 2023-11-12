@@ -19,6 +19,11 @@ class Game:
         self.main_menu = Menu()
         self.game_over_screen = GameOverScreen(self.screen)
 
+        # sound
+        main_sound = pygame.mixer.Sound('./Asset/bgm.mp3')
+        main_sound.set_volume(0.08)
+        main_sound.play(loops = -1)
+
         # Game state
         self.game_over = False
 
@@ -83,15 +88,14 @@ class Game:
         # Calculate minutes and seconds
         minutes = int(elapsed_time / 60000)
         seconds = int((elapsed_time % 60000) / 1000)
+        # # Create a text surface for the timer
+        # timer_text = self.timer_font.render(f"{minutes:02d}:{seconds:02d}", True, (255, 255, 255))
 
-        # Create a text surface for the timer
-        timer_text = self.timer_font.render(f"{minutes:02d}:{seconds:02d}", True, (255, 255, 255))
+        # # Get the rectangle of the text surface
+        # timer_rect = timer_text.get_rect(center=(MENU_WIDTH_CENTER, 20))
 
-        # Get the rectangle of the text surface
-        timer_rect = timer_text.get_rect(center=(MENU_WIDTH_CENTER, 20))
-
-        # Blit the timer text onto the screen
-        self.screen.blit(timer_text, timer_rect)
+        # # Blit the timer text onto the screen
+        # self.screen.blit(timer_text, timer_rect)
 
 if __name__ == '__main__':
     game = Game()
