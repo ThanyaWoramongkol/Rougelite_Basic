@@ -60,7 +60,7 @@ class Game:
                     self.display_timer(elapsed_time)
 
                     # Check player's health
-                    if self.level.player.health <= 0 or elapsed_time >= self.game_duration:
+                    if self.level.player.health <= 0 or elapsed_time >= self.game_duration or self.level.player.exp >= 330:
                         self.game_over = True
 
                     pygame.display.update()
