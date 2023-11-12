@@ -38,7 +38,7 @@ MENU_BUTTON_COLOR = 'white'
 # enemy
 MONSTER_DATA = {
     "flying creature" : {'health' : 2000, 'exp' : 10, 'damage' : 15, 'attack_type' : 'tackle', 'speed' : 1, 'resistance' : 3, 'attack_radius' : 10, 'notice_radius' : 300},
-    "goblin" : {'health' : 3500, 'exp' : 15, 'damage' : 15, 'attack_type' : 'slash', 'speed' : 1, 'resistance' : 2, 'attack_radius' : 20, 'notice_radius' : 200},
+    "goblin" : {'health' : 2500, 'exp' : 15, 'damage' : 15, 'attack_type' : 'slash', 'speed' : 1, 'resistance' : 2, 'attack_radius' : 20, 'notice_radius' : 200},
     "slime" : {'health' : 1500, 'exp' : 5, 'damage' : 10, 'attack_type' : 'tackle', 'speed' : 1, 'resistance' : 1, 'attack_radius' : 10, 'notice_radius' : 100}
 }
 
