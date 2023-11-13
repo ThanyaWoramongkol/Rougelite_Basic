@@ -50,7 +50,9 @@ class Level:
                         x = col_index * TILESIZE
                         y = row_index * TILESIZE
                         if style == 'boundary':
-                            Tile((x, y), [self.visible_sprites, self.obstacles_sprites], 'invisible')
+                            # อันบนเห็นขอบแมพเป็นสีดำ อันล่างไม่เห็น
+                            # Tile((x, y), [self.visible_sprites, self.obstacles_sprites], 'invisible')
+                            Tile((x, y), [self.obstacles_sprites], 'invisible')
 
                         #enemies parts
                         if style == 'entities':
